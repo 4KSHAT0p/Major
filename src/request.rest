@@ -1,0 +1,14 @@
+### get the status
+GET http://localhost:8080/ehrbase/rest/status
+
+### display the templates
+GET http://localhost:8080/ehrbase/rest/openehr/v1/definition/template/adl1.4
+
+### check if ehr exists
+GET http://localhost:8080/ehrbase/rest/openehr/v1/ehr/9e3fb685-9ac1-4968-88d5-51726225c5df
+
+### post empty ehr
+POST http://localhost:8080/ehrbase/rest/openehr/v1/ehr
+
+### check server side cache
+GET http://localhost:3000/123

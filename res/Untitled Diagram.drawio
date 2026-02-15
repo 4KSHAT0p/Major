@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.6">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.7">
   <diagram name="Page-1" id="GXPotzh9NqeQXtowtef1">
-    <mxGraphModel dx="1389" dy="749" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="583" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1042" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="583" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,7 +8,7 @@
           <mxGeometry height="140" width="80" x="360" y="200" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" value="" vertex="1">
-          <mxGeometry height="140" width="250" x="460" y="200" as="geometry" />
+          <mxGeometry height="140" width="170" x="460" y="200" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Mapping&lt;div&gt;(c.2)&lt;/div&gt;" vertex="1">
           <mxGeometry height="120" width="70" x="550" y="210" as="geometry" />
@@ -19,31 +19,28 @@
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pre Mapping Validation&lt;br&gt;&lt;div&gt;(c.1)&lt;/div&gt;" vertex="1">
           <mxGeometry height="120" width="70" x="470" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="IIrXJLm_TgYj-urw9Zvv-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Post Mapping Validation&lt;div&gt;(c.3)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="120" width="70" x="630" y="210" as="geometry" />
-        </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="EHRbase&lt;div&gt;(d)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="140" width="80" x="750" y="200" as="geometry" />
+          <mxGeometry height="140" width="80" x="670" y="200" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Post Mapping Validation&lt;div&gt;(e)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="140" width="80" x="850" y="200" as="geometry" />
+          <mxGeometry height="140" width="80" x="770" y="200" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-12" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="230" y="180" as="sourcePoint" />
-            <mxPoint x="940" y="180" as="targetPoint" />
+            <mxPoint x="860" y="180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-13" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="230" y="360" as="sourcePoint" />
-            <mxPoint x="940" y="360" as="targetPoint" />
+            <mxPoint x="860" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-14" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="940" y="180" as="sourcePoint" />
-            <mxPoint x="940" y="360" as="targetPoint" />
+            <mxPoint x="860" y="180" as="sourcePoint" />
+            <mxPoint x="860" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-15" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
@@ -60,8 +57,8 @@
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-17" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="730" y="390" as="sourcePoint" />
-            <mxPoint x="730" y="150" as="targetPoint" />
+            <mxPoint x="650" y="390" as="sourcePoint" />
+            <mxPoint x="650" y="150" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Extract&lt;/font&gt;" vertex="1">
@@ -74,18 +71,18 @@
           <mxGeometry height="30" width="60" x="810" y="370" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;Pipeline Modules&lt;/span&gt;" vertex="1">
-          <mxGeometry height="30" width="130" x="520" y="100" as="geometry" />
+          <mxGeometry height="30" width="130" x="480" y="100" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-24" edge="1" parent="1" source="IIrXJLm_TgYj-urw9Zvv-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="230" y="270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="IIrXJLm_TgYj-urw9Zvv-23" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="RAW&lt;div&gt;DATA&lt;/div&gt;&lt;div&gt;(csv)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="80" x="100" y="230" as="geometry" />
+        <mxCell id="IIrXJLm_TgYj-urw9Zvv-23" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Non standardized Healthcare data" vertex="1">
+          <mxGeometry height="100" width="80" x="110" y="220" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-25" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="openEHR compliant data" vertex="1">
-          <mxGeometry height="120" width="90" x="990" y="210" as="geometry" />
+          <mxGeometry height="120" width="90" x="900" y="210" as="geometry" />
         </mxCell>
         <mxCell id="IIrXJLm_TgYj-urw9Zvv-27" edge="1" parent="1" source="IIrXJLm_TgYj-urw9Zvv-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="IIrXJLm_TgYj-urw9Zvv-25">
           <mxGeometry relative="1" as="geometry" />

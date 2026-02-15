@@ -1,0 +1,2714 @@
+{
+  "templateId" : "Inpatient_Encounter",
+  "semVer" : "1.0.0",
+  "version" : "2.3",
+  "defaultLanguage" : "en",
+  "languages" : [ "en" ],
+  "tree" : {
+    "id" : "inpatient_encounter",
+    "name" : "Inpatient_Encounter",
+    "localizedName" : "Inpatient_Encounter",
+    "rmType" : "COMPOSITION",
+    "nodeId" : "openEHR-EHR-COMPOSITION.encounter.v1",
+    "min" : 1,
+    "max" : 1,
+    "localizedNames" : {
+      "en" : "Inpatient_Encounter"
+    },
+    "localizedDescriptions" : {
+      "en" : "Interaction, contact or care event between a subject of care and healthcare provider(s)."
+    },
+    "aqlPath" : "",
+    "children" : [ {
+      "id" : "context",
+      "rmType" : "EVENT_CONTEXT",
+      "nodeId" : "",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/context",
+      "children" : [ {
+        "id" : "start_time",
+        "name" : "Start_time",
+        "rmType" : "DV_DATE_TIME",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/context/start_time",
+        "inputs" : [ {
+          "type" : "DATETIME"
+        } ],
+        "inContext" : true
+      }, {
+        "id" : "setting",
+        "name" : "Setting",
+        "rmType" : "DV_CODED_TEXT",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/context/setting",
+        "inputs" : [ {
+          "suffix" : "code",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "value",
+          "type" : "TEXT"
+        } ],
+        "inContext" : true
+      } ]
+    }, {
+      "id" : "episode_of_care_-_institution",
+      "name" : "Episode of care - institution",
+      "localizedName" : "Episode of care - institution",
+      "rmType" : "ADMIN_ENTRY",
+      "nodeId" : "openEHR-EHR-ADMIN_ENTRY.episode_institution.v0",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Episode of care - institution"
+      },
+      "localizedDescriptions" : {
+        "en" : "Administrative details about a period of admitted patient care between a formal or statistical admission and a formal or statistical separation, characterised by only one care type of care from a healthcare institution."
+      },
+      "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]",
+      "children" : [ {
+        "id" : "episode_id",
+        "name" : "Episode ID",
+        "localizedName" : "Episode ID",
+        "rmType" : "DV_IDENTIFIER",
+        "nodeId" : "at0014",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Episode ID"
+        },
+        "localizedDescriptions" : {
+          "en" : "An identifier for the episode of care."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0014]/value",
+        "inputs" : [ {
+          "suffix" : "id",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "type",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "issuer",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "assigner",
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "admission_date",
+        "name" : "Admission date",
+        "localizedName" : "Admission date",
+        "rmType" : "DV_DATE_TIME",
+        "nodeId" : "at0004",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Admission date"
+        },
+        "localizedDescriptions" : {
+          "en" : "The date and/or time of the formal or statistical admission to the institution."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0004]/value",
+        "inputs" : [ {
+          "type" : "DATETIME"
+        } ]
+      }, {
+        "id" : "reason_for_admission",
+        "name" : "Reason for admission",
+        "localizedName" : "Reason for admission",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0008",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Reason for admission"
+        },
+        "localizedDescriptions" : {
+          "en" : "The reason why the individual was admitted for an episode of care."
+        },
+        "annotations" : {
+          "comment" : "For example: respite; rehabilitation; or infection isolation.\r\nDiagnosies should be recorded using the EVAL.problem_diagnosis archetype plus the nested CLUSTER.problem_qualifier, if necessary."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0008]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "admission_category",
+        "name" : "Admission category",
+        "localizedName" : "Admission category",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0009",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Admission category"
+        },
+        "localizedDescriptions" : {
+          "en" : "The type of admission."
+        },
+        "annotations" : {
+          "comment" : "For example: day surgery; elective surgery or em. "
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0009]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "source_category",
+        "name" : "Source category",
+        "localizedName" : "Source category",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0007",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Source category"
+        },
+        "localizedDescriptions" : {
+          "en" : "The type of residence where the individual resided prior to admission."
+        },
+        "annotations" : {
+          "comment" : "For example: hospital, community, or nursing home. 'Admission source' should be coded with a terminology, where possible."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0007]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "medical_record_number",
+        "name" : "Medical record number",
+        "localizedName" : "Medical record number",
+        "rmType" : "ELEMENT",
+        "nodeId" : "at0016",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Medical record number"
+        },
+        "localizedDescriptions" : {
+          "en" : "Identification of the medical record number."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0016]",
+        "children" : [ {
+          "id" : "identifier_value",
+          "localizedName" : "Medical record number",
+          "rmType" : "DV_IDENTIFIER",
+          "nodeId" : "",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Medical record number"
+          },
+          "localizedDescriptions" : {
+            "en" : "Identification of the medical record number."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0016]/value",
+          "inputs" : [ {
+            "suffix" : "id",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "type",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "issuer",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "assigner",
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "text_value",
+          "localizedName" : "Medical record number",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Medical record number"
+          },
+          "localizedDescriptions" : {
+            "en" : "Identification of the medical record number."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0016]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        } ]
+      }, {
+        "id" : "health_insurance_category",
+        "name" : "Health insurance category",
+        "localizedName" : "Health insurance category",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0026",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Health insurance category"
+        },
+        "localizedDescriptions" : {
+          "en" : "The type of health insurance applicable for the episode."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0026]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "attending_unit",
+        "name" : "Attending unit",
+        "localizedName" : "Attending unit",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0021",
+        "min" : 0,
+        "max" : -1,
+        "localizedNames" : {
+          "en" : "Attending unit"
+        },
+        "localizedDescriptions" : {
+          "en" : "The clinical service unit assigned for care of the individual."
+        },
+        "annotations" : {
+          "comment" : "For example: Orthopaedic A unit."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0021]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "physical_location",
+        "name" : "Physical location",
+        "localizedName" : "Physical location",
+        "rmType" : "CLUSTER",
+        "nodeId" : "at0018",
+        "min" : 0,
+        "max" : -1,
+        "localizedNames" : {
+          "en" : "Physical location"
+        },
+        "localizedDescriptions" : {
+          "en" : "The physical location of the individual within the institution during the episode of care."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]",
+        "children" : [ {
+          "id" : "location_onset",
+          "name" : "Location onset",
+          "localizedName" : "Location onset",
+          "rmType" : "DV_DATE_TIME",
+          "nodeId" : "at0019",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Location onset"
+          },
+          "localizedDescriptions" : {
+            "en" : "The date the individual was moved to the internal institution location."
+          },
+          "annotations" : {
+            "comment" : "For example, the date moved to a new ward or bed."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]/items[at0019]/value",
+          "inputs" : [ {
+            "type" : "DATETIME"
+          } ]
+        }, {
+          "id" : "location_category",
+          "name" : "Location category",
+          "localizedName" : "Location category",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0025",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Location category"
+          },
+          "localizedDescriptions" : {
+            "en" : "The type of location."
+          },
+          "annotations" : {
+            "comment" : "For example: Intensive care unit; high dependency unit."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]/items[at0025]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "ward",
+          "name" : "Ward",
+          "localizedName" : "Ward",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0022",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Ward"
+          },
+          "localizedDescriptions" : {
+            "en" : "The name of the Ward within the institution where the individual was located."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]/items[at0022]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "room",
+          "name" : "Room",
+          "localizedName" : "Room",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0023",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Room"
+          },
+          "localizedDescriptions" : {
+            "en" : "The name of the Room within the institution where the individual was located."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]/items[at0023]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "bed",
+          "name" : "Bed",
+          "localizedName" : "Bed",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0024",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Bed"
+          },
+          "localizedDescriptions" : {
+            "en" : "The name of the Bed within the institution where the individual was located."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]/items[at0024]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "location_end",
+          "name" : "Location end",
+          "localizedName" : "Location end",
+          "rmType" : "DV_DATE_TIME",
+          "nodeId" : "at0020",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Location end"
+          },
+          "localizedDescriptions" : {
+            "en" : "The date the individual was moved from the internal institution location."
+          },
+          "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0018]/items[at0020]/value",
+          "inputs" : [ {
+            "type" : "DATETIME"
+          } ]
+        } ]
+      }, {
+        "id" : "separation_date",
+        "name" : "Separation date",
+        "localizedName" : "Separation date",
+        "rmType" : "DV_DATE_TIME",
+        "nodeId" : "at0002",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Separation date"
+        },
+        "localizedDescriptions" : {
+          "en" : "The date and/or time of the formal or statistical end of the admission to the institution."
+        },
+        "annotations" : {
+          "comment" : "For example: transfer of care to home or another institution; or date of death.\r\nFormal recording of the date of death should use CLUSTER.death_details."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0002]/value",
+        "inputs" : [ {
+          "type" : "DATETIME"
+        } ]
+      }, {
+        "id" : "outcome",
+        "name" : "Outcome",
+        "localizedName" : "Outcome",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0006",
+        "min" : 0,
+        "max" : -1,
+        "localizedNames" : {
+          "en" : "Outcome"
+        },
+        "localizedDescriptions" : {
+          "en" : "Outcome for the individual at the end of the episode of care."
+        },
+        "annotations" : {
+          "comment" : "For example: recovered/not recovered/death."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0006]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "destination_category",
+        "name" : "Destination category",
+        "localizedName" : "Destination category",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0003",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Destination category"
+        },
+        "localizedDescriptions" : {
+          "en" : "The type of residence where the individual resided after the episode of care."
+        },
+        "annotations" : {
+          "comment" : "For example: home; hospital; nursing home; or rehabilitation hospital."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0003]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "comment",
+        "name" : "Comment",
+        "localizedName" : "Comment",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0010",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Comment"
+        },
+        "localizedDescriptions" : {
+          "en" : "Additional narrative about the episode, not captured in other fields."
+        },
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/data[at0001]/items[at0010]/value",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "language",
+        "name" : "Language",
+        "rmType" : "CODE_PHRASE",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/language",
+        "inContext" : true
+      }, {
+        "id" : "encoding",
+        "name" : "Encoding",
+        "rmType" : "CODE_PHRASE",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/encoding",
+        "inContext" : true
+      }, {
+        "id" : "subject",
+        "name" : "Subject",
+        "rmType" : "PARTY_PROXY",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-ADMIN_ENTRY.episode_institution.v0]/subject",
+        "inputs" : [ {
+          "suffix" : "id",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "id_scheme",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "id_namespace",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "name",
+          "type" : "TEXT"
+        } ],
+        "inContext" : true
+      } ]
+    }, {
+      "id" : "laboratory_test_result",
+      "name" : "Laboratory test result",
+      "localizedName" : "Laboratory test result",
+      "rmType" : "OBSERVATION",
+      "nodeId" : "openEHR-EHR-OBSERVATION.laboratory_test_result.v1",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Laboratory test result"
+      },
+      "localizedDescriptions" : {
+        "en" : "The result, including findings and the laboratory's interpretation, of an investigation performed on specimens collected from an individual or related to that individual."
+      },
+      "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]",
+      "children" : [ {
+        "id" : "any_event",
+        "name" : "Any event",
+        "localizedName" : "Any event",
+        "rmType" : "EVENT",
+        "nodeId" : "at0002",
+        "min" : 0,
+        "max" : -1,
+        "localizedNames" : {
+          "en" : "Any event"
+        },
+        "localizedDescriptions" : {
+          "en" : "Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time."
+        },
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]",
+        "children" : [ {
+          "id" : "test_name",
+          "name" : "Test name",
+          "localizedName" : "Test name",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0005",
+          "min" : 1,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test name"
+          },
+          "localizedDescriptions" : {
+            "en" : "Name of the laboratory investigation performed on the specimen(s)."
+          },
+          "annotations" : {
+            "comment" : "A test result may be for a single analyte, or a group of items, including panel tests. It is strongly recommended that 'Test name' be coded with a terminology, for example LOINC or SNOMED CT. For example: 'Glucose', 'Urea and Electrolytes', 'Swab', 'Cortisol (am)', 'Potassium in perspiration' or 'Melanoma histopathology'. The name may sometimes include specimen type and patient state, for example 'Fasting blood glucose' or include other information, as 'Potassium (PNA blood gas)'."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0005]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "overall_test_status",
+          "name" : "Overall test status",
+          "localizedName" : "Overall test status",
+          "rmType" : "DV_CODED_TEXT",
+          "nodeId" : "at0073",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Overall test status"
+          },
+          "localizedDescriptions" : {
+            "en" : "The status of the laboratory test result as a whole."
+          },
+          "annotations" : {
+            "comment" : "The values have been specifically chosen to match those in the HL7 FHIR Diagnostic report, historically derived from HL7v2 practice. Other local codes/terms can be used via the Text 'choice'.\r\n\r\nThis element is multiple occurrence to cater for the use cases where statuses for different aspects of the result have been split into several elements."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0073]/value",
+          "inputs" : [ {
+            "suffix" : "code",
+            "type" : "CODED_TEXT",
+            "list" : [ {
+              "value" : "at0107",
+              "label" : "Registered",
+              "localizedLabels" : {
+                "en" : "Registered"
+              },
+              "localizedDescriptions" : {
+                "en" : "The existence of the test is registered in the Laboratory Information System, but there is nothing yet available."
+              }
+            }, {
+              "value" : "at0037",
+              "label" : "Partial",
+              "localizedLabels" : {
+                "en" : "Partial"
+              },
+              "localizedDescriptions" : {
+                "en" : "This is a partial (e.g. initial, interim or preliminary) Test Result: data in the Test Result may be incomplete or unverified."
+              }
+            }, {
+              "value" : "at0120",
+              "label" : "Preliminary",
+              "localizedLabels" : {
+                "en" : "Preliminary"
+              },
+              "localizedDescriptions" : {
+                "en" : "Verified early results are available, but not all results are final. This is a sub-category of 'Partial'."
+              }
+            }, {
+              "value" : "at0038",
+              "label" : "Final",
+              "localizedLabels" : {
+                "en" : "Final"
+              },
+              "localizedDescriptions" : {
+                "en" : "The Test result is complete and verified by an authorised person."
+              }
+            }, {
+              "value" : "at0040",
+              "label" : "Amended",
+              "localizedLabels" : {
+                "en" : "Amended"
+              },
+              "localizedDescriptions" : {
+                "en" : "The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed."
+              }
+            }, {
+              "value" : "at0115",
+              "label" : "Corrected",
+              "localizedLabels" : {
+                "en" : "Corrected"
+              },
+              "localizedDescriptions" : {
+                "en" : "The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'."
+              }
+            }, {
+              "value" : "at0119",
+              "label" : "Appended",
+              "localizedLabels" : {
+                "en" : "Appended"
+              },
+              "localizedDescriptions" : {
+                "en" : "Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'."
+              }
+            }, {
+              "value" : "at0074",
+              "label" : "Cancelled",
+              "localizedLabels" : {
+                "en" : "Cancelled"
+              },
+              "localizedDescriptions" : {
+                "en" : "The result is unavailable because the test was not started or not completed (also sometimes called 'aborted')."
+              }
+            }, {
+              "value" : "at0116",
+              "label" : "Entered in error",
+              "localizedLabels" : {
+                "en" : "Entered in error"
+              },
+              "localizedDescriptions" : {
+                "en" : "The Test Result has been withdrawn following previous Final release."
+              }
+            } ],
+            "listOpen" : true
+          }, {
+            "suffix" : "other",
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "overall_test_status_timestamp",
+          "name" : "Overall test status timestamp",
+          "localizedName" : "Overall test status timestamp",
+          "rmType" : "DV_DATE_TIME",
+          "nodeId" : "at0075",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Overall test status timestamp"
+          },
+          "localizedDescriptions" : {
+            "en" : "The date and/or time that ‘Overall test status’ was issued."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0075]/value",
+          "inputs" : [ {
+            "type" : "DATETIME"
+          } ]
+        }, {
+          "id" : "diagnostic_service_category",
+          "name" : "Diagnostic service category",
+          "localizedName" : "Diagnostic service category",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0077",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Diagnostic service category"
+          },
+          "localizedDescriptions" : {
+            "en" : "The diagnostic service or discipline that is responsible for the laboratory test result."
+          },
+          "annotations" : {
+            "comment" : "This is intended to be a general categorisation and not to capture the organisational name of the laboratory. For example: anatomical pathology, immunology and transfusion medicine, medical microbiology, clinical pharmacology, medical genetics, medical biochemistry. Alternatively more granular sub categories or sub disciplines, such as endocrinology, haematology, and allergology services, may be used. This may assist clinicians in filtering between categories of results. Coding with a terminology is desirable, where possible."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0077]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "clinical_information_provided",
+          "name" : "Clinical information provided",
+          "localizedName" : "Clinical information provided",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0100",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Clinical information provided"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description of clinical information available at the time of interpretation of results."
+          },
+          "annotations" : {
+            "comment" : "This data element may include a link to the original clinical information provided in the test request."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0100]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "conclusion",
+          "name" : "Conclusion",
+          "localizedName" : "Conclusion",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0057",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Conclusion"
+          },
+          "localizedDescriptions" : {
+            "en" : "Narrative description of the key findings."
+          },
+          "annotations" : {
+            "comment" : "For example: 'Pattern suggests significant renal impairment'. The content of the conclusion will vary, depending on the investigation performed. This conclusion should be aligned with the coded 'Test diagnosis'."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0057]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "test_diagnosis",
+          "name" : "Test diagnosis",
+          "localizedName" : "Test diagnosis",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0098",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Test diagnosis"
+          },
+          "localizedDescriptions" : {
+            "en" : "Single word, phrase or brief description that represents the clinical meaning and significance of the laboratory test result."
+          },
+          "annotations" : {
+            "comment" : "For example: 'Severe hepatic impairment', 'Salmonella contamination'. Coding of the diagnosis with a terminology is strongly recommended, where possible. This diagnosis should be aligned with the narrative in the 'Conclusion'."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0098]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "comment",
+          "name" : "Comment",
+          "localizedName" : "Comment",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0101",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Comment"
+          },
+          "localizedDescriptions" : {
+            "en" : "Additional narrative about the test result not captured in other fields."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[at0101]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "confounding_factors",
+          "name" : "Confounding factors",
+          "localizedName" : "Confounding factors",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0113",
+          "min" : 0,
+          "max" : -1,
+          "dependsOn" : [ "conclusion", "overall_test_status", "diagnostic_service_category", "comment", "clinical_information_provided", "test_diagnosis", "test_name", "overall_test_status_timestamp" ],
+          "localizedNames" : {
+            "en" : "Confounding factors"
+          },
+          "localizedDescriptions" : {
+            "en" : "Issues or circumstances that impact on the accurate interpretation of the measurement or test result."
+          },
+          "annotations" : {
+            "comment" : "'Confounding factors' should be reserved for uncontrolled/unplanned issues of patient state/physiology that might affect interpretation, for example 'recent exercise' or 'recent tobacco smoking'.\r\n\r\nKnown or required preconditions, such as 'fasting' should be carried in the 'Sampling conditions' element within the CLUSTER.specimen archetype . In some cases preconditions are captured as part of the test name, for example 'Fasting blood glucose'.\r\n\r\nKnown issues with specimen collection or handling, such as 'prolonged use of tourniquet' or 'sample haemolysed', should be carried in the 'Specimen quality' elements within CLUSTER.specimen archetype.\r\n\r\nCoding with a terminology is desirable, where possible."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/state[at0112]/items[at0113]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "time",
+          "name" : "Time",
+          "rmType" : "DV_DATE_TIME",
+          "min" : 1,
+          "max" : 1,
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/time",
+          "inputs" : [ {
+            "type" : "DATETIME"
+          } ],
+          "inContext" : true
+        } ]
+      }, {
+        "id" : "laboratory_internal_identifier",
+        "name" : "Laboratory internal identifier",
+        "localizedName" : "Laboratory internal identifier",
+        "rmType" : "ELEMENT",
+        "nodeId" : "at0068",
+        "min" : 0,
+        "max" : 1,
+        "dependsOn" : [ "any_event" ],
+        "localizedNames" : {
+          "en" : "Laboratory internal identifier"
+        },
+        "localizedDescriptions" : {
+          "en" : "A local identifier assigned by the receiving Laboratory Information System (LIS) to track the test process."
+        },
+        "annotations" : {
+          "comment" : "This identifier is an internal tracking number assigned by the LIS, and it not intended to be the name of the test."
+        },
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0068]",
+        "children" : [ {
+          "id" : "identifier_value",
+          "localizedName" : "Laboratory internal identifier",
+          "rmType" : "DV_IDENTIFIER",
+          "nodeId" : "",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Laboratory internal identifier"
+          },
+          "localizedDescriptions" : {
+            "en" : "A local identifier assigned by the receiving Laboratory Information System (LIS) to track the test process."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0068]/value",
+          "inputs" : [ {
+            "suffix" : "id",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "type",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "issuer",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "assigner",
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "text_value",
+          "localizedName" : "Laboratory internal identifier",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Laboratory internal identifier"
+          },
+          "localizedDescriptions" : {
+            "en" : "A local identifier assigned by the receiving Laboratory Information System (LIS) to track the test process."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0068]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        } ]
+      }, {
+        "id" : "test_request_details",
+        "name" : "Test request details",
+        "localizedName" : "Test request details",
+        "rmType" : "CLUSTER",
+        "nodeId" : "at0094",
+        "min" : 0,
+        "max" : -1,
+        "dependsOn" : [ "any_event" ],
+        "localizedNames" : {
+          "en" : "Test request details"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details about the test request."
+        },
+        "annotations" : {
+          "comment" : "In most situations there is one test request and a single corresponding test result, however this repeating cluster allows for the situation where there may be multiple test requests reported using a single test result.\r\n\r\nAs an example: 'a clinician asks for blood glucose in one request and Urea/electrolytes in a second request, but the lab analyser does both and the lab wishes to report these together'."
+        },
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]",
+        "children" : [ {
+          "id" : "original_test_requested_name",
+          "name" : "Original test requested name",
+          "localizedName" : "Original test requested name",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0106",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Original test requested name"
+          },
+          "localizedDescriptions" : {
+            "en" : "Name of the original laboratory test requested."
+          },
+          "annotations" : {
+            "comment" : "This data element is to be used when the test requested differs from the test actually performed by the laboratory."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0106]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "requester_order_identifier",
+          "name" : "Requester order identifier",
+          "localizedName" : "Requester order identifier",
+          "rmType" : "ELEMENT",
+          "nodeId" : "at0062",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Requester order identifier"
+          },
+          "localizedDescriptions" : {
+            "en" : "The local identifier assigned by the requesting clinical system."
+          },
+          "annotations" : {
+            "comment" : "Equivalent to the HL7 Placer Order Identifier."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0062]",
+          "children" : [ {
+            "id" : "identifier_value",
+            "localizedName" : "Requester order identifier",
+            "rmType" : "DV_IDENTIFIER",
+            "nodeId" : "",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Requester order identifier"
+            },
+            "localizedDescriptions" : {
+              "en" : "The local identifier assigned by the requesting clinical system."
+            },
+            "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0062]/value",
+            "inputs" : [ {
+              "suffix" : "id",
+              "type" : "TEXT"
+            }, {
+              "suffix" : "type",
+              "type" : "TEXT"
+            }, {
+              "suffix" : "issuer",
+              "type" : "TEXT"
+            }, {
+              "suffix" : "assigner",
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "text_value",
+            "localizedName" : "Requester order identifier",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Requester order identifier"
+            },
+            "localizedDescriptions" : {
+              "en" : "The local identifier assigned by the requesting clinical system."
+            },
+            "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0062]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          } ]
+        }, {
+          "id" : "receiver_order_identifier",
+          "name" : "Receiver order identifier",
+          "localizedName" : "Receiver order identifier",
+          "rmType" : "ELEMENT",
+          "nodeId" : "at0063",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Receiver order identifier"
+          },
+          "localizedDescriptions" : {
+            "en" : "The local identifier assigned to the test order by the order filler, usually by the Laboratory Information System (LIS)."
+          },
+          "annotations" : {
+            "comment" : "Assigning an identifier to a request by the Laboratory lnformation System (LIS) enables tracking progress of the request and enables linking results to requests. It also provides a reference to assist with enquiries and it is usually equivalent to the HL7 Filler Order Identifier."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0063]",
+          "children" : [ {
+            "id" : "identifier_value",
+            "localizedName" : "Receiver order identifier",
+            "rmType" : "DV_IDENTIFIER",
+            "nodeId" : "",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Receiver order identifier"
+            },
+            "localizedDescriptions" : {
+              "en" : "The local identifier assigned to the test order by the order filler, usually by the Laboratory Information System (LIS)."
+            },
+            "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0063]/value",
+            "inputs" : [ {
+              "suffix" : "id",
+              "type" : "TEXT"
+            }, {
+              "suffix" : "type",
+              "type" : "TEXT"
+            }, {
+              "suffix" : "issuer",
+              "type" : "TEXT"
+            }, {
+              "suffix" : "assigner",
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "text_value",
+            "localizedName" : "Receiver order identifier",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Receiver order identifier"
+            },
+            "localizedDescriptions" : {
+              "en" : "The local identifier assigned to the test order by the order filler, usually by the Laboratory Information System (LIS)."
+            },
+            "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0094]/items[at0063]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          } ]
+        } ]
+      }, {
+        "id" : "point-of-care_test",
+        "name" : "Point-of-care test",
+        "localizedName" : "Point-of-care test",
+        "rmType" : "DV_BOOLEAN",
+        "nodeId" : "at0111",
+        "min" : 0,
+        "max" : 1,
+        "dependsOn" : [ "any_event" ],
+        "localizedNames" : {
+          "en" : "Point-of-care test"
+        },
+        "localizedDescriptions" : {
+          "en" : "This indicates whether the test was performed directly at Point-of-Care (POCT) as opposed to a formal result from a laboratory or other service delivery organisation."
+        },
+        "annotations" : {
+          "comment" : "True if the test was performed directly at Point-of-Care (POCT)."
+        },
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0111]/value",
+        "inputs" : [ {
+          "type" : "BOOLEAN"
+        } ]
+      }, {
+        "id" : "test_method",
+        "name" : "Test method",
+        "localizedName" : "Test method",
+        "rmType" : "ELEMENT",
+        "nodeId" : "at0121",
+        "min" : 0,
+        "max" : 1,
+        "dependsOn" : [ "any_event" ],
+        "localizedNames" : {
+          "en" : "Test method"
+        },
+        "localizedDescriptions" : {
+          "en" : "Description about the method used to perform the test."
+        },
+        "annotations" : {
+          "comment" : "Coding with a terminology is desirable, where possible."
+        },
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]",
+        "children" : [ {
+          "id" : "coded_text_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_CODED_TEXT",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "suffix" : "code",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "value",
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "text_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_TEXT",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "multimedia_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_MULTIMEDIA",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "parsable_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_PARSABLE",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "suffix" : "value",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "formalism",
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "state_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_STATE",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "suffix" : "code",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "value",
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "boolean_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_BOOLEAN",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "BOOLEAN"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "identifier_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_IDENTIFIER",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "suffix" : "id",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "type",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "issuer",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "assigner",
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "uri_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_URI",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "ehr_uri_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_EHR_URI",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "duration_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_DURATION",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "suffix" : "year",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          }, {
+            "suffix" : "month",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          }, {
+            "suffix" : "day",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          }, {
+            "suffix" : "week",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          }, {
+            "suffix" : "hour",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          }, {
+            "suffix" : "minute",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          }, {
+            "suffix" : "second",
+            "type" : "INTEGER",
+            "validation" : {
+              "range" : {
+                "minOp" : ">=",
+                "min" : 0
+              }
+            }
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "quantity_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_QUANTITY",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "suffix" : "magnitude",
+            "type" : "DECIMAL"
+          }, {
+            "suffix" : "unit",
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "count_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_COUNT",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "INTEGER"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "proportion_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_PROPORTION",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "proportionTypes" : [ "integer_fraction", "unitary", "percent", "ratio", "fraction" ],
+          "inputs" : [ {
+            "suffix" : "numerator",
+            "type" : "DECIMAL"
+          }, {
+            "suffix" : "denominator",
+            "type" : "DECIMAL"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "date_time_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_DATE_TIME",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "DATETIME"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "date_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_DATE",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "DATE"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "time_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_TIME",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "TIME"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "ordinal_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_ORDINAL",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "CODED_TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "scale_value",
+          "name" : "Test method",
+          "localizedName" : "Test method",
+          "rmType" : "DV_SCALE",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Test method"
+          },
+          "localizedDescriptions" : {
+            "en" : "Description about the method used to perform the test."
+          },
+          "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[at0121]/Test method",
+          "inputs" : [ {
+            "type" : "CODED_TEXT"
+          } ],
+          "inContext" : true
+        } ]
+      }, {
+        "id" : "language",
+        "name" : "Language",
+        "rmType" : "CODE_PHRASE",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/language",
+        "inContext" : true
+      }, {
+        "id" : "encoding",
+        "name" : "Encoding",
+        "rmType" : "CODE_PHRASE",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/encoding",
+        "inContext" : true
+      }, {
+        "id" : "subject",
+        "name" : "Subject",
+        "rmType" : "PARTY_PROXY",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/subject",
+        "inputs" : [ {
+          "suffix" : "id",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "id_scheme",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "id_namespace",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "name",
+          "type" : "TEXT"
+        } ],
+        "inContext" : true
+      } ]
+    }, {
+      "id" : "medication_order",
+      "name" : "Medication order",
+      "localizedName" : "Medication order",
+      "rmType" : "INSTRUCTION",
+      "nodeId" : "openEHR-EHR-INSTRUCTION.medication_order.v3",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "Medication order"
+      },
+      "localizedDescriptions" : {
+        "en" : "An order for a medication, vaccine, nutritional product or other therapeutic item for an identified individual."
+      },
+      "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]",
+      "children" : [ {
+        "id" : "order",
+        "name" : "Order",
+        "localizedName" : "Order",
+        "rmType" : "ACTIVITY",
+        "nodeId" : "at0001",
+        "min" : 0,
+        "max" : -1,
+        "localizedNames" : {
+          "en" : "Order"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of the requested order."
+        },
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]",
+        "children" : [ {
+          "id" : "medication_item",
+          "name" : "Medication item",
+          "localizedName" : "Medication item",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0070",
+          "min" : 1,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Medication item"
+          },
+          "localizedDescriptions" : {
+            "en" : "Name of the medication, vaccine or other therapeutic/prescribable item being ordered."
+          },
+          "annotations" : {
+            "comment" : "Depending on the prescribing context this field could be used for either generic- or product-based prescribing. This data field can be used to record tightly bound orders of different medications when they are prescribed as a single pack. It is strongly recommended that the 'Medication item' be coded with a terminology capable of triggering decision support, where possible. The extent of coding may vary from the simple name of the medication item through to structured details about the actual medication pack to be used. Free text entry should only be used if there is no appropriate terminology available."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0070]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "route",
+          "name" : "Route",
+          "localizedName" : "Route",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0091",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Route"
+          },
+          "localizedDescriptions" : {
+            "en" : "The route by which the ordered item is to be administered into the subject's body."
+          },
+          "annotations" : {
+            "comment" : "For example: 'oral', 'intravenous', or 'topical'.\r\nCoding of the route with a terminology is preferred, where possible. Multiple potential routes may be specified."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0091]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "body_site",
+          "name" : "Body site",
+          "localizedName" : "Body site",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0092",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Body site"
+          },
+          "localizedDescriptions" : {
+            "en" : "Name of the site of administration of the ordered item."
+          },
+          "annotations" : {
+            "comment" : "For example: 'left upper arm', 'intravenous catheter right hand'.\r\n Coding of the body site with a terminology is preferred, where possible."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0092]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "administration_method",
+          "name" : "Administration method",
+          "localizedName" : "Administration method",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0094",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Administration method"
+          },
+          "localizedDescriptions" : {
+            "en" : "The technique or device by which the ordered item is to be administered."
+          },
+          "annotations" : {
+            "comment" : "For example: ' via Z-track injection'; 'via nebuliser'. Coding of the method with a terminology is preferred, where possible."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0094]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "overall_directions_description",
+          "name" : "Overall directions description",
+          "localizedName" : "Overall directions description",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0009",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Overall directions description"
+          },
+          "localizedDescriptions" : {
+            "en" : "Complete narrative description about how the ordered item is to be used."
+          },
+          "annotations" : {
+            "comment" : "This narrative should normally subsume data captured in 'Dose amount', 'Dose timing' and any additional instructions for use. Where the medication dose directions are fully carried by the structured, computable dose directions, this element should carry the narrative equivalent, generally auto-generated. If it is not possible to represent the intended 'Dose direction' fully in computable form, partial representation is not recommended, and the directions should be only recorded in narrative form using this data element."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0009]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "parsable_directions",
+          "name" : "Parsable directions",
+          "localizedName" : "Parsable directions",
+          "rmType" : "DV_PARSABLE",
+          "nodeId" : "at0047",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Parsable directions"
+          },
+          "localizedDescriptions" : {
+            "en" : "A parsable, computable text representation of the directions."
+          },
+          "annotations" : {
+            "comment" : "Generally this is only used when passing information between legacy systems. For example: '10mg bd; 20mg n' as used by the NHS Dose syntax (in development)."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0047]/value",
+          "inputs" : [ {
+            "suffix" : "value",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "formalism",
+            "type" : "TEXT",
+            "list" : [ {
+              "value" : "text/html",
+              "label" : "text/html"
+            }, {
+              "value" : "text/plain",
+              "label" : "text/plain"
+            }, {
+              "value" : "text/xml",
+              "label" : "text/xml"
+            } ],
+            "listOpen" : false
+          } ]
+        }, {
+          "id" : "specific_directions_description",
+          "name" : "Specific directions description",
+          "localizedName" : "Specific directions description",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0173",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Specific directions description"
+          },
+          "localizedDescriptions" : {
+            "en" : "A narrative description of a specific part of overall directions."
+          },
+          "annotations" : {
+            "comment" : "In some settings, it is common to split overall narrative directions into more specific segments of narrative. For example in hospital settings, it can be common to split the overall directions into 'Dose amount' and 'Dose timing', both as narrative text. These terms can be applied at template or run-time."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0173]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "dosage_justification",
+          "name" : "Dosage justification",
+          "localizedName" : "Dosage justification",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0174",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Dosage justification"
+          },
+          "localizedDescriptions" : {
+            "en" : "A description of the justification used to calculate a dose amount or administration rate where this is dependent on some other factor."
+          },
+          "annotations" : {
+            "comment" : "For example: 'Adjusted for amputation'."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0174]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "medication_safety",
+          "name" : "Medication safety",
+          "localizedName" : "Medication safety",
+          "rmType" : "CLUSTER",
+          "nodeId" : "at0062",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Medication safety"
+          },
+          "localizedDescriptions" : {
+            "en" : "Details about medication safety for the ordered item."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]",
+          "children" : [ {
+            "id" : "exceptional_safety_override",
+            "name" : "Exceptional safety override?",
+            "localizedName" : "Exceptional safety override?",
+            "rmType" : "DV_BOOLEAN",
+            "nodeId" : "at0064",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Exceptional safety override?"
+            },
+            "localizedDescriptions" : {
+              "en" : "Confirmation by the prescriber that the normal dose or other safety limit has been overridden due to exceptional circumstances."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0064]/value",
+            "inputs" : [ {
+              "type" : "BOOLEAN"
+            } ]
+          }, {
+            "id" : "safety_override",
+            "name" : "Safety override",
+            "localizedName" : "Safety override",
+            "rmType" : "CLUSTER",
+            "nodeId" : "at0178",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Safety override"
+            },
+            "localizedDescriptions" : {
+              "en" : "Overriding of a known or recognised safety issue which applies to this subject and the ordered item, such as an allergy, drug duplication warning or contraindication."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0178]",
+            "children" : [ {
+              "id" : "overriden_safety_advice",
+              "name" : "Overriden safety advice",
+              "localizedName" : "Overriden safety advice",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0171",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Overriden safety advice"
+              },
+              "localizedDescriptions" : {
+                "en" : "A known or recognised safety issue which applies to this subject and the ordered item, such as an allergy, drug duplication warning or contraindication. This element is normally only recorded when this safety advice is overridden."
+              },
+              "annotations" : {
+                "comment" : "For example: 'Allergic to penicillin', 'Atenolol duplicated'."
+              },
+              "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0178]/items[at0171]/value",
+              "inputs" : [ {
+                "type" : "TEXT"
+              } ]
+            }, {
+              "id" : "override_reason",
+              "name" : "Override reason",
+              "localizedName" : "Override reason",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0162",
+              "min" : 0,
+              "max" : -1,
+              "localizedNames" : {
+                "en" : "Override reason"
+              },
+              "localizedDescriptions" : {
+                "en" : "The reason for a clinical safety or maximum dose override."
+              },
+              "annotations" : {
+                "comment" : "For example: 'Not responsive at maximum recommended dose. Critical situation.', 'Peniciilin is only valid treatment, likelihood of true penicillin allergy is low'."
+              },
+              "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0178]/items[at0162]/value",
+              "inputs" : [ {
+                "type" : "TEXT"
+              } ]
+            } ]
+          }, {
+            "id" : "maximum_dose",
+            "name" : "Maximum dose",
+            "localizedName" : "Maximum dose",
+            "rmType" : "CLUSTER",
+            "nodeId" : "at0051",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Maximum dose"
+            },
+            "localizedDescriptions" : {
+              "en" : "Details about the maximum, cumulative dose allowed over a defined period for the ordered item."
+            },
+            "annotations" : {
+              "comment" : "For example: 'up to 1gram per day'. This cluster allows multiple occurrences to enable representation of multiple maximum doses that apply to different time periods. Lifetime maximum dose should not be carried here as it refers to multiple orders over time."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0051]",
+            "children" : [ {
+              "id" : "maximum_amount",
+              "name" : "Maximum amount",
+              "localizedName" : "Maximum amount",
+              "rmType" : "DV_QUANTITY",
+              "nodeId" : "at0130",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Maximum amount"
+              },
+              "localizedDescriptions" : {
+                "en" : "The maximum, cumulative amount of medication which should be administered within the allowed period."
+              },
+              "annotations" : {
+                "comment" : "For example: 1 ml, 1.5 mg, 0.125 g."
+              },
+              "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0051]/items[at0130]/value",
+              "inputs" : [ {
+                "suffix" : "magnitude",
+                "type" : "DECIMAL"
+              }, {
+                "suffix" : "unit",
+                "type" : "CODED_TEXT"
+              } ]
+            }, {
+              "id" : "allowed_period",
+              "name" : "Allowed period",
+              "localizedName" : "Allowed period",
+              "rmType" : "DV_DURATION",
+              "nodeId" : "at0053",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Allowed period"
+              },
+              "localizedDescriptions" : {
+                "en" : "The period of time during which the maximum dose is calculated."
+              },
+              "annotations" : {
+                "comment" : "Example: 24 hours."
+              },
+              "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0051]/items[at0053]/value",
+              "inputs" : [ {
+                "suffix" : "year",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              }, {
+                "suffix" : "month",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              }, {
+                "suffix" : "day",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              }, {
+                "suffix" : "week",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              }, {
+                "suffix" : "hour",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              }, {
+                "suffix" : "minute",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              }, {
+                "suffix" : "second",
+                "type" : "INTEGER",
+                "validation" : {
+                  "range" : {
+                    "minOp" : ">=",
+                    "min" : 0
+                  }
+                }
+              } ]
+            } ]
+          }, {
+            "id" : "total_daily_effective_dose",
+            "name" : "Total daily effective dose",
+            "localizedName" : "Total daily effective dose",
+            "rmType" : "CLUSTER",
+            "nodeId" : "at0150",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Total daily effective dose"
+            },
+            "localizedDescriptions" : {
+              "en" : "Details about the total daily amount of the ordered item expected to be administered."
+            },
+            "annotations" : {
+              "comment" : "The total daily dose records the expected effective dose, and thus support titration of an initial low dose towards the effective dose over a period of time. This is not itself the target dose or goal but the actual effective daily dose against that goal. In some circumstances the Total daily dose will be calcuable from computable directions, in others it may need to be manually entered."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0150]",
+            "children" : [ {
+              "id" : "purpose",
+              "name" : "Purpose",
+              "localizedName" : "Purpose",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0165",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Purpose"
+              },
+              "localizedDescriptions" : {
+                "en" : "Description of the reason for recording a total daily effective dose."
+              },
+              "annotations" : {
+                "comment" : "For example: 'Hypertension control', 'Target dose 20mg daily'. The description could be used to identify a name, phrase or paragraph about the purpose for recording total daily effective dose, commonly to allow to titration towards a specific target dose.\r\nThe goal or target dose might be recorded here or more commonly as part of a linked EVALUATION 'Goal' archetype."
+              },
+              "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0150]/items[at0165]/value",
+              "inputs" : [ {
+                "type" : "TEXT"
+              } ]
+            }, {
+              "id" : "total_daily_amount",
+              "name" : "Total daily amount",
+              "localizedName" : "Total daily amount",
+              "rmType" : "DV_QUANTITY",
+              "nodeId" : "at0151",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Total daily amount"
+              },
+              "localizedDescriptions" : {
+                "en" : "The amount of ordered item which will be taken each day if administered as intended."
+              },
+              "annotations" : {
+                "comment" : "For example '20 mg'."
+              },
+              "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0062]/items[at0150]/items[at0151]/value",
+              "inputs" : [ {
+                "suffix" : "magnitude",
+                "type" : "DECIMAL"
+              }, {
+                "suffix" : "unit",
+                "type" : "CODED_TEXT"
+              } ]
+            } ]
+          } ]
+        }, {
+          "id" : "additional_instruction",
+          "name" : "Additional instruction",
+          "localizedName" : "Additional instruction",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0044",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Additional instruction"
+          },
+          "localizedDescriptions" : {
+            "en" : "An additional instruction on how to use or store the ordered item."
+          },
+          "annotations" : {
+            "comment" : "For example: precautions as 'take with food', 'Avoid grapefruit', 'Dissolve in water', 'store in a cool, dry place'. This data element allows multiple occurrences and should be coded with a reference terminology, where possible."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0044]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "patient_information",
+          "name" : "Patient information",
+          "localizedName" : "Patient information",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0105",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Patient information"
+          },
+          "localizedDescriptions" : {
+            "en" : "An additional instruction directed primarily at the individual/patient or carers."
+          },
+          "annotations" : {
+            "comment" : "For example: 'To reduce your blood pressure', 'To thin your blood'. This data element allows multiple occurrences and should be coded with a reference terminology, where possible. If required it is possible to use a LINK attribute to associate this element with, for example, the 'original diagnosis' in a separate Problem list composition but the indication should be explicitly recorded here, as the link target may change over time."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0105]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "monitoring_instruction",
+          "name" : "Monitoring instruction",
+          "localizedName" : "Monitoring instruction",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0107",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Monitoring instruction"
+          },
+          "localizedDescriptions" : {
+            "en" : "An additional instruction which gives advice on recommended or required monitoring of the ordered item."
+          },
+          "annotations" : {
+            "comment" : "For example: 'Please check renal function in 2 weeks'. This data element allows multiple occurrences."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0107]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "clinical_indication",
+          "name" : "Clinical indication",
+          "localizedName" : "Clinical indication",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0018",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Clinical indication"
+          },
+          "localizedDescriptions" : {
+            "en" : "The clinical reason for use of the ordered item."
+          },
+          "annotations" : {
+            "comment" : "For example: 'Angina'. Coding of the clinical indication with a terminology is preferred, where possible. This data element allows multiple occurrences. It is not intended to carry an indication for administrative authorisation purposes."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0018]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "therapeutic_intent",
+          "name" : "Therapeutic intent",
+          "localizedName" : "Therapeutic intent",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0148",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Therapeutic intent"
+          },
+          "localizedDescriptions" : {
+            "en" : "The overall therapeutic intent of the ordered item."
+          },
+          "annotations" : {
+            "comment" : "For example: 'pain relief'; 'palliative care'; 'low-dose prophylaxis'; 'rehydration'; 'nutritional infusion'."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0148]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "clinician_guidance",
+          "name" : "Clinician guidance",
+          "localizedName" : "Clinician guidance",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0179",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Clinician guidance"
+          },
+          "localizedDescriptions" : {
+            "en" : "Advice to future prescribers/dispensers about the ongoing, long term order."
+          },
+          "annotations" : {
+            "comment" : "For example: 'don't allow brand substitution' or advice regarding using a specific brand to avoid fillers that cause reactions."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0179]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "order_details",
+          "name" : "Order details",
+          "localizedName" : "Order details",
+          "rmType" : "CLUSTER",
+          "nodeId" : "at0113",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Order details"
+          },
+          "localizedDescriptions" : {
+            "en" : "Details about the whole medication order."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]",
+          "children" : [ {
+            "id" : "order_start_date_time",
+            "name" : "Order start date/time",
+            "localizedName" : "Order start date/time",
+            "rmType" : "DV_DATE_TIME",
+            "nodeId" : "at0012",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Order start date/time"
+            },
+            "localizedDescriptions" : {
+              "en" : "The date and optional time to commence use of the ordered item."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]/items[at0012]/value",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ]
+          }, {
+            "id" : "order_stop_date_time",
+            "name" : "Order stop date/time",
+            "localizedName" : "Order stop date/time",
+            "rmType" : "DV_DATE_TIME",
+            "nodeId" : "at0013",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Order stop date/time"
+            },
+            "localizedDescriptions" : {
+              "en" : "The date and optional time when it is planned to cease use of the ordered item."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]/items[at0013]/value",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ]
+          }, {
+            "id" : "order_start_criterion",
+            "name" : "Order start criterion",
+            "localizedName" : "Order start criterion",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0011",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Order start criterion"
+            },
+            "localizedDescriptions" : {
+              "en" : "A condition which, when met, requires the commencement of administration or use."
+            },
+            "annotations" : {
+              "comment" : "For example: 'Start if symptoms recur'. This is intended for a general pre-condition which should trigger the whole medication course to be started, and not for 'as required' administrations of an ongoing order."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]/items[at0011]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "order_stop_criterion",
+            "name" : "Order stop criterion",
+            "localizedName" : "Order stop criterion",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0016",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Order stop criterion"
+            },
+            "localizedDescriptions" : {
+              "en" : "A condition which, when met, requires the cessation of administration or use."
+            },
+            "annotations" : {
+              "comment" : "For example: 'Stop after symptoms disappear''."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]/items[at0016]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "administrations_completed",
+            "name" : "Administrations completed",
+            "localizedName" : "Administrations completed",
+            "rmType" : "DV_COUNT",
+            "nodeId" : "at0060",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Administrations completed"
+            },
+            "localizedDescriptions" : {
+              "en" : "The number of administrations of the ordered item that have been completed, as part of the intended whole order but prior to the issuance of this order."
+            },
+            "annotations" : {
+              "comment" : "For example: To record that the patient has taken the two first antibiotic tablets of a three day course, prior to discharge from the hospital to a nursing home."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]/items[at0060]/value",
+            "inputs" : [ {
+              "type" : "INTEGER",
+              "validation" : {
+                "range" : {
+                  "minOp" : ">=",
+                  "min" : 0
+                }
+              }
+            } ]
+          }, {
+            "id" : "duration_of_order_completed",
+            "name" : "Duration of order completed",
+            "localizedName" : "Duration of order completed",
+            "rmType" : "DV_DURATION",
+            "nodeId" : "at0050",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Duration of order completed"
+            },
+            "localizedDescriptions" : {
+              "en" : "The time period during which the individual/patient has already been using the ordered item as a part of the intended whole order but prior to the issuance of this order."
+            },
+            "annotations" : {
+              "comment" : "For example: To record that the patient had been taking antibiotics 3 days prior to hospital admission, in the context of a 7 day course."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0113]/items[at0050]/value",
+            "inputs" : [ {
+              "suffix" : "week",
+              "type" : "INTEGER",
+              "validation" : {
+                "range" : {
+                  "minOp" : ">=",
+                  "min" : 0
+                }
+              }
+            }, {
+              "suffix" : "day",
+              "type" : "INTEGER",
+              "validation" : {
+                "range" : {
+                  "minOp" : ">=",
+                  "min" : 0
+                }
+              }
+            }, {
+              "suffix" : "hour",
+              "type" : "INTEGER",
+              "validation" : {
+                "range" : {
+                  "minOp" : ">=",
+                  "min" : 0
+                }
+              }
+            } ]
+          } ]
+        }, {
+          "id" : "dispense_directions",
+          "name" : "Dispense directions",
+          "localizedName" : "Dispense directions",
+          "rmType" : "CLUSTER",
+          "nodeId" : "at0129",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Dispense directions"
+          },
+          "localizedDescriptions" : {
+            "en" : "Directions about the dispensing of the ordered item."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]",
+          "children" : [ {
+            "id" : "dispense_instruction",
+            "name" : "Dispense instruction",
+            "localizedName" : "Dispense instruction",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0106",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Dispense instruction"
+            },
+            "localizedDescriptions" : {
+              "en" : "An additional instruction directed primarily at the person dispensing the ordered item."
+            },
+            "annotations" : {
+              "comment" : "Example: Detailed instructions for phased dispensing of opiates."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]/items[at0106]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "substitution_direction",
+            "name" : "Substitution direction",
+            "localizedName" : "Substitution direction",
+            "rmType" : "DV_CODED_TEXT",
+            "nodeId" : "at0132",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Substitution direction"
+            },
+            "localizedDescriptions" : {
+              "en" : "Permission for substitution with a bioequivalent item."
+            },
+            "annotations" : {
+              "comment" : "In many jurisdictions, substitution of an ordered item as a generic form or with a different brand name, which has been determined as bioequivalent, is allowed at the point of dispense or supply. In other cases substitution is assumed and the clinician has to explicitly request non-substitution."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]/items[at0132]/value",
+            "inputs" : [ {
+              "suffix" : "code",
+              "type" : "CODED_TEXT",
+              "list" : [ {
+                "value" : "at0168",
+                "label" : "Permitted",
+                "localizedLabels" : {
+                  "en" : "Permitted"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Substitution of the medication with a bioequivalent medication is allowed."
+                }
+              }, {
+                "value" : "at0169",
+                "label" : "Not permitted",
+                "localizedLabels" : {
+                  "en" : "Not permitted"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Substitution of the medication with a bioequivalent medication is not allowed."
+                }
+              } ]
+            } ]
+          }, {
+            "id" : "non-substitution_reason",
+            "name" : "Non-substitution reason",
+            "localizedName" : "Non-substitution reason",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0154",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Non-substitution reason"
+            },
+            "localizedDescriptions" : {
+              "en" : "The reason why an ordered item should not be substituted at dispense."
+            },
+            "annotations" : {
+              "comment" : "For example 'Generic preparation not bio-equivalent'."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]/items[at0154]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "priority",
+            "name" : "Priority",
+            "localizedName" : "Priority",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0139",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Priority"
+            },
+            "localizedDescriptions" : {
+              "en" : "An indicator of the urgency with which the ordered item should be dispensed."
+            },
+            "annotations" : {
+              "comment" : "For example 'Urgent'. This is left to be templated or specialised according to local valuesets. Some jurisdictions allow instructions to dispense to be marked as 'urgent' so that the dispensary handles them quickly."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]/items[at0139]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "dispensing_start_date",
+            "name" : "Dispensing start date",
+            "localizedName" : "Dispensing start date",
+            "rmType" : "DV_DATE_TIME",
+            "nodeId" : "at0155",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Dispensing start date"
+            },
+            "localizedDescriptions" : {
+              "en" : "The date from which the ordered item is permitted to be dispensed for the first time."
+            },
+            "annotations" : {
+              "comment" : "May be used to control the time of dispensing of medications with potential for abuse. For example: benzodiazepines or analgesics."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]/items[at0155]/value",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ]
+          }, {
+            "id" : "dispensing_expiry_date",
+            "name" : "Dispensing expiry date",
+            "localizedName" : "Dispensing expiry date",
+            "rmType" : "DV_DATE_TIME",
+            "nodeId" : "at0161",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Dispensing expiry date"
+            },
+            "localizedDescriptions" : {
+              "en" : "The date after which the ordered item is no longer valid to be legally dispensed."
+            },
+            "annotations" : {
+              "comment" : "In some jurisdictions, orders to dispense may have an expiry date after which the prescription may not be dispensed."
+            },
+            "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0129]/items[at0161]/value",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ]
+          } ]
+        }, {
+          "id" : "comment",
+          "name" : "Comment",
+          "localizedName" : "Comment",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0167",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Comment"
+          },
+          "localizedDescriptions" : {
+            "en" : "Additional narrative about the medication order not captured in other fields."
+          },
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/description[at0002]/items[at0167]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "timing",
+          "name" : "Timing",
+          "rmType" : "DV_PARSABLE",
+          "min" : 1,
+          "max" : 1,
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/timing",
+          "inputs" : [ {
+            "suffix" : "value",
+            "type" : "TEXT"
+          }, {
+            "suffix" : "formalism",
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        }, {
+          "id" : "action_archetype_id",
+          "name" : "Action_archetype_id",
+          "rmType" : "STRING",
+          "min" : 1,
+          "max" : 1,
+          "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/activities[at0001]/action_archetype_id",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ],
+          "inContext" : true
+        } ]
+      }, {
+        "id" : "order_identifier",
+        "name" : "Order identifier",
+        "localizedName" : "Order identifier",
+        "rmType" : "DV_IDENTIFIER",
+        "nodeId" : "at0004",
+        "min" : 0,
+        "max" : -1,
+        "dependsOn" : [ "order" ],
+        "localizedNames" : {
+          "en" : "Order identifier"
+        },
+        "localizedDescriptions" : {
+          "en" : "Unique identifier for the medication order."
+        },
+        "annotations" : {
+          "comment" : "This data element allows for multiple occurrences to be defined more explicitly at run-time, if required."
+        },
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/protocol[at0005]/items[at0004]/value",
+        "inputs" : [ {
+          "suffix" : "id",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "type",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "issuer",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "assigner",
+          "type" : "TEXT"
+        } ]
+      }, {
+        "id" : "expiry_time",
+        "name" : "expiry_time",
+        "rmType" : "DV_DATE_TIME",
+        "min" : 0,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/expiry_time",
+        "inputs" : [ {
+          "type" : "DATETIME"
+        } ]
+      }, {
+        "id" : "narrative",
+        "name" : "Narrative",
+        "rmType" : "DV_TEXT",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/narrative",
+        "inputs" : [ {
+          "type" : "TEXT"
+        } ],
+        "inContext" : true
+      }, {
+        "id" : "language",
+        "name" : "Language",
+        "rmType" : "CODE_PHRASE",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/language",
+        "inContext" : true
+      }, {
+        "id" : "encoding",
+        "name" : "Encoding",
+        "rmType" : "CODE_PHRASE",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/encoding",
+        "inContext" : true
+      }, {
+        "id" : "subject",
+        "name" : "Subject",
+        "rmType" : "PARTY_PROXY",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/content[openEHR-EHR-INSTRUCTION.medication_order.v3]/subject",
+        "inputs" : [ {
+          "suffix" : "id",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "id_scheme",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "id_namespace",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "name",
+          "type" : "TEXT"
+        } ],
+        "inContext" : true
+      } ]
+    }, {
+      "id" : "category",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/category",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "CODED_TEXT",
+        "list" : [ {
+          "value" : "433",
+          "label" : "event",
+          "localizedLabels" : {
+            "en" : "event"
+          }
+        } ],
+        "terminology" : "openehr"
+      } ],
+      "inContext" : true
+    }, {
+      "id" : "language",
+      "name" : "Language",
+      "rmType" : "CODE_PHRASE",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/language",
+      "inContext" : true
+    }, {
+      "id" : "territory",
+      "name" : "Territory",
+      "rmType" : "CODE_PHRASE",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/territory",
+      "inContext" : true
+    }, {
+      "id" : "composer",
+      "name" : "Composer",
+      "rmType" : "PARTY_PROXY",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/composer",
+      "inputs" : [ {
+        "suffix" : "id",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "id_scheme",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "id_namespace",
+        "type" : "TEXT"
+      }, {
+        "suffix" : "name",
+        "type" : "TEXT"
+      } ],
+      "inContext" : true
+    } ]
+  }
+}

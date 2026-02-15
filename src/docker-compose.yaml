@@ -1,0 +1,25 @@
+services:
+  ehrdb:
+    image: ehrbase/ehrbase-v2-postgres:16.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      EHRBASE_USER_ADMIN: ehrbase
+      EHRBASE_PASSWORD_ADMIN: ehrbase
+      EHRBASE_USER: ehrbase_restricted
+      EHRBASE_PASSWORD: ehrbase_restricted
+    ports:
+      - "5432:5432"
+
+  ehrbase:
+    image: ehrbase/ehrbase:next
+    environment:
+      DB_URL: jdbc:postgresql://ehrdb:5432/ehrbase
+      DB_USER_ADMIN: ehrbase              # Remove ${}
+      DB_PASS_ADMIN: ehrbase              # Remove ${}
+      DB_USER: ehrbase_restricted
+      DB_PASS: ehrbase_restricted
+    depends_on:
+      - ehrdb
+    ports:
+      - "8080:8080"
