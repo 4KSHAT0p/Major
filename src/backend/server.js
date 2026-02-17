@@ -5,7 +5,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-//in memory store  (can use redis in prod)
+//in memory store  (can use redis or db in prod)
 const ehr_mapping = {};
 
 server.get("/:patient_id", (req, res) => {

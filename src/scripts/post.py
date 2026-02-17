@@ -1,7 +1,7 @@
 import requests
 
 # Upload template
-with open("Inpatient_Encounter.opt", "r") as f:
+with open("openEHR//Inpatient_Encounter.opt", "r") as f:
     template_xml = f.read()
 
 response = requests.post(

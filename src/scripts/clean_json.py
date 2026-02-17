@@ -100,12 +100,8 @@ df_pat = df_pat.rename(
     columns={"subject_id": "patient_id", "anchor_age": "age", "dod": "death_date"}
 )
 
-# Tasks:
-# - Examine data distributions, missing values, outliers
-# - Identify clinical vs administrative fields
-# - Document data quality issues
 # ================================
-# 2️⃣ GENERAL CLEANING FUNCTION
+# GENERAL CLEANING FUNCTION
 # ================================
 
 def basic_cleaning(df):
@@ -122,7 +118,7 @@ def basic_cleaning(df):
 
 
 # ================================
-# 3️⃣ ADMISSIONS CLEANING
+# ADMISSIONS CLEANING
 # ================================
 
 df_admission = basic_cleaning(df_admission)
@@ -146,7 +142,7 @@ df_admission["hospital_expired"] = df_admission["hospital_expired"].fillna(0).as
 
 
 # ================================
-# 4️⃣ LAB EVENTS CLEANING
+# LAB EVENTS CLEANING
 # ================================
 
 df_lab = basic_cleaning(df_lab)
@@ -165,7 +161,7 @@ df_lab["unit"] = df_lab["unit"].str.lower()
 
 
 # ================================
-# 5️⃣ PRESCRIPTIONS CLEANING
+# PRESCRIPTIONS CLEANING
 # ================================
 
 df_pres = basic_cleaning(df_pres)
@@ -193,7 +189,7 @@ df_pres["route"] = df_pres["route"].str.lower()
 
 
 # ================================
-# 6️⃣ PATIENTS CLEANING
+# PATIENTS CLEANING
 # ================================
 
 df_pat = basic_cleaning(df_pat)
@@ -209,7 +205,7 @@ df_pat = df_pat[df_pat["gender"].isin(["M", "F"])]
 
 
 # ================================
-# 7️⃣ FINAL CONSISTENCY CHECK
+# FINAL CONSISTENCY CHECK
 # ================================
 
 # Keep only admissions with valid patients
@@ -222,9 +218,6 @@ df_lab = df_lab[df_lab["admission_id"].isin(valid_admissions)]
 df_pres = df_pres[df_pres["admission_id"].isin(valid_admissions)]
 
 
-# ================================
-# 8️⃣ EXPORT CLEAN JSON (FHIR-ready style)
-# ================================
 
 df_admission.to_json("clean_admissions.json", orient="records", date_format="iso")
 df_lab.to_json("clean_labs.json", orient="records", date_format="iso")
