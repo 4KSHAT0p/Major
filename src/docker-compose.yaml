@@ -13,6 +13,8 @@ services:
     volumes:
       - ehrdb_data:/var/lib/postgresql/data
 
+  
+
   ehrbase:
     image: ehrbase/ehrbase:next
     environment:

@@ -4,11 +4,8 @@ GET http://localhost:8080/ehrbase/rest/status
 ### display the templates
 GET http://localhost:8080/ehrbase/rest/openehr/v1/definition/template/adl1.4/
 
-### check if ehr exists
-GET http://localhost:8080/ehrbase/rest/openehr/v1/ehr/d10fbb6a-3f54-4f30-953d-6d629d189893/composition
+### get EHR
+GET http://localhost:8080/ehrbase/rest/openehr/v1/ehr/{ehr_id}
 
-### post empty ehr
-POST http://localhost:8080/ehrbase/rest/openehr/v1/ehr
-
-### check server side cache
-GET http://localhost:3000/10019917
+### get composition
+GET http://localhost:8080/ehrbase/rest/openehr/v1/ehr/{ehr_id}/composition/{versioned_object_uid}
