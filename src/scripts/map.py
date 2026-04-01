@@ -1,20 +1,42 @@
 import json
-import requests
 from collections import defaultdict
+
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+from service_config import BACKEND_BASE_URL, EHRBASE_API_URL
 
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
 
-EHRBASE_URL = "http://localhost:8080/ehrbase/rest/openehr/v1"
 TEMPLATE_ID = "Inpatient_Encounter"
-BACKEND_URL = "http://localhost:3000"
+EPISODE_ARCHETYPE = "openEHR-EHR-ADMIN_ENTRY.episode_institution.v0"
 
 
 PATIENTS_FILE = "clean_patients.json"
 ADMISSIONS_FILE = "clean_admissions.json"
 LABS_FILE = "clean_labs.json"
 PRESCRIPTIONS_FILE = "clean_prescriptions.json"
+HTTP_TIMEOUT = 20
+
+
+def _build_session() -> requests.Session:
+    session = requests.Session()
+    retry = Retry(
+        total=5,
+        backoff_factor=1,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=("GET", "POST"),
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+
+SESSION = _build_session()
 
 # ============================================================================
 # STEP 1: LOAD DATA
@@ -44,40 +66,48 @@ print(f"✓ Loaded {len(prescriptions)} prescriptions")
 
 
 def create_ehr() -> str:
-    url = f"{EHRBASE_URL}/ehr"
-
-    response = requests.post(url)
-
-    if response.status_code == 201:
-        # EHR ID is in Location header
-        location = response.headers["Location"]
-        ehr_id = location.split("/")[-1]
-        return ehr_id
-    else:
-        raise Exception(response.text)
-
-
-print("\nCreating EHRs for all patients...")
-
-for patient in patients:
-    patient_id = patient["patient_id"]
+    url = f"{EHRBASE_API_URL}/ehr"
 
     try:
-        # Check if exists first
-        response = requests.get(f"{BACKEND_URL}/{patient_id}")
-        if response.status_code == 200:
-            print(f"○ EHR already exists for patient {patient_id}: {response.json}")
+        response = SESSION.post(url, timeout=HTTP_TIMEOUT)
+    except requests.RequestException as exc:
+        raise RuntimeError(f"Failed to create EHR: {exc}") from exc
 
-        else:
-            ehr_id = create_ehr()  # ← pass patient_id
-            print(f"✓ Created EHR for patient {patient_id}: {ehr_id}")
-            response = requests.post(
-                f"{BACKEND_URL}/{patient_id}",
-                json={"ehr_id": ehr_id},
-            )
+    if response.status_code == 201:
+        location = response.headers.get("Location", "")
+        ehr_id = location.rstrip("/").split("/")[-1]
+        if not ehr_id:
+            raise RuntimeError("EHRbase returned 201 but no Location header")
+        return ehr_id
 
-    except Exception as e:
-        print(f"✗ Failed for patient {patient_id}: {e}")
+    raise RuntimeError(
+        f"EHR creation failed with {response.status_code}: {response.text}"
+    )
+
+
+def cache_ehr_id(patient_id: int, ehr_id: str) -> bool:
+    try:
+        response = SESSION.post(
+            f"{BACKEND_BASE_URL}/{patient_id}",
+            json={"ehr_id": ehr_id},
+            timeout=HTTP_TIMEOUT,
+        )
+    except requests.RequestException as exc:
+        print(f"✗ Unable to cache EHR ID for patient {patient_id}: {exc}")
+        return False
+
+    if response.status_code in (200, 201):
+        return True
+    if response.status_code == 403:
+        print(f"✗ Backend already has mapping for patient {patient_id}")
+        return False
+
+    print(
+        f"✗ Backend rejected mapping for patient {patient_id} "
+        f"({response.status_code}): {response.text}"
+    )
+    return False
+
 
 
 def commit_composition(ehr_id: str, composition: dict) -> str:
@@ -86,7 +116,7 @@ def commit_composition(ehr_id: str, composition: dict) -> str:
     Returns the versioned_object_uid (from ETag header) on success.
     Raises on failure.
     """
-    url = f"{EHRBASE_URL}/ehr/{ehr_id}/composition"
+    url = f"{EHRBASE_API_URL}/ehr/{ehr_id}/composition"
 
     headers = {
         "Content-Type": "application/json",
@@ -94,7 +124,15 @@ def commit_composition(ehr_id: str, composition: dict) -> str:
         "Prefer": "return=representation",
     }
 
-    response = requests.post(url, json=composition, headers=headers)
+    try:
+        response = SESSION.post(
+            url,
+            json=composition,
+            headers=headers,
+            timeout=HTTP_TIMEOUT,
+        )
+    except requests.RequestException as exc:
+        raise RuntimeError(f"Request to EHRbase failed for EHR {ehr_id}: {exc}") from exc
 
     if response.status_code == 201:
         # ETag looks like: "abc123::local.ehrbase.org::1"
@@ -102,13 +140,108 @@ def commit_composition(ehr_id: str, composition: dict) -> str:
         versioned_uid = response.headers.get("ETag", "").strip('"')
         return versioned_uid
     else:
-        raise Exception(
+        raise RuntimeError(
             f"Failed to commit composition for EHR {ehr_id}: "
             f"{response.status_code} — {response.text}"
         )
 
 
 # after loading
+
+
+def fetch_existing_admissions() -> set[int]:
+    """Return admission_ids that already have compositions in EHRbase."""
+    query = f"""
+    SELECT
+        c/content[{EPISODE_ARCHETYPE}]/data[at0001]/items[at0014]/value/id AS admission_id
+    FROM EHR e
+    CONTAINS COMPOSITION c
+    WHERE c/archetype_details/template_id/value = '{TEMPLATE_ID}'
+    """
+
+    try:
+        response = SESSION.post(
+            f"{EHRBASE_API_URL}/query/aql",
+            headers={"Content-Type": "application/json", "Accept": "application/json"},
+            json={"q": query},
+            timeout=HTTP_TIMEOUT,
+        )
+        response.raise_for_status()
+        payload = response.json()
+    except requests.RequestException as exc:
+        print(f"✗ Unable to fetch existing admissions from EHRbase: {exc}")
+        return set()
+
+    idx = 0
+    for i, col in enumerate(payload.get("columns", [])):
+        if col.get("name") == "admission_id":
+            idx = i
+            break
+
+    existing = set()
+    for row in payload.get("rows", []):
+        value = row[idx]
+        if value is None:
+            continue
+        try:
+            existing.add(int(value))
+        except (TypeError, ValueError):
+            continue
+    return existing
+
+
+def get_ehr_id_from_cache(patient_id: int, *, log_missing: bool = True) -> str | None:
+    try:
+        response = SESSION.get(
+            f"{BACKEND_BASE_URL}/{patient_id}", timeout=HTTP_TIMEOUT
+        )
+    except requests.RequestException as exc:
+        print(f"✗ Unable to reach backend for patient {patient_id}: {exc}")
+        return None
+
+    if response.status_code == 404:
+        if log_missing:
+            print(f"✗ Missing EHR mapping for patient {patient_id}")
+        return None
+
+    if response.status_code != 200:
+        print(
+            f"✗ Backend returned {response.status_code} for patient {patient_id}: {response.text}"
+        )
+        return None
+
+    try:
+        payload = response.json()
+    except ValueError:
+        print(f"✗ Backend returned invalid JSON for patient {patient_id}")
+        return None
+
+    if isinstance(payload, str):
+        return payload
+
+    print(f"✗ Unexpected backend payload for patient {patient_id}: {payload}")
+    return None
+
+
+print("\nCreating EHRs for all patients...")
+
+for patient in patients:
+    patient_id = int(patient["patient_id"])
+
+    cached_ehr = get_ehr_id_from_cache(patient_id, log_missing=False)
+
+    if cached_ehr:
+        print(f"○ EHR already exists for patient {patient_id}: {cached_ehr}")
+        continue
+
+    try:
+        ehr_id = create_ehr()
+    except RuntimeError as exc:
+        print(f"✗ Failed to create EHR for patient {patient_id}: {exc}")
+        continue
+
+    if cache_ehr_id(patient_id, ehr_id):
+        print(f"✓ Created EHR for patient {patient_id}: {ehr_id}")
 
 # -------------------------------------------------
 # STEP 2: Build Lookup Maps
@@ -612,17 +745,40 @@ def build_composition(admission: dict, labs: list, prescriptions: list) -> dict:
 #         commit_to_ehrbase(ehr_id, composition)
 
 
-patient_id = int(patients[0]["patient_id"])
+print("\nSubmitting admissions to EHRbase...")
+existing_admissions = fetch_existing_admissions()
+if existing_admissions:
+    print(f"→ Found {len(existing_admissions)} admission(s) already stored — will skip duplicates")
 
-ehr_id = requests.get(f"{BACKEND_URL}/{patient_id}").json()
-print(ehr_id)
-for admission in admissions_by_patient.get(patient_id, []):
-    admission_id = admission["admission_id"]
+for patient in patients:
+    patient_id = int(patient["patient_id"])
+    ehr_id = get_ehr_id_from_cache(patient_id)
+    if not ehr_id:
+        continue
 
-    labs = labs_by_admission.get(admission_id, [])
-    prescriptions = prescriptions_by_admission.get(admission_id, [])
+    patient_admissions = admissions_by_patient.get(patient_id, [])
+    if not patient_admissions:
+        continue
 
-    composition = build_composition(admission, labs, prescriptions)
-    # print(composition)
+    print(f"\nPatient {patient_id}: {len(patient_admissions)} admission(s) to process")
 
-    commit_composition(ehr_id, composition)
+    for admission in patient_admissions:
+        admission_id = admission["admission_id"]
+        if admission_id in existing_admissions:
+            print(f"  • Admission {admission_id} already committed; skipping")
+            continue
+
+        labs = labs_by_admission.get(admission_id, [])
+        prescriptions = prescriptions_by_admission.get(admission_id, [])
+
+        composition = build_composition(admission, labs, prescriptions)
+
+        try:
+            version_uid = commit_composition(ehr_id, composition)
+            existing_admissions.add(admission_id)
+            print(
+                f"  ✓ Admission {admission_id} committed ({len(labs)} labs, {len(prescriptions)} meds)"
+                f" → {version_uid}"
+            )
+        except Exception as exc:
+            print(f"  ✗ Admission {admission_id} failed: {exc}")
