@@ -26,7 +26,7 @@ services:
     depends_on:
       - ehrdb
     ports:
-      - "8080:8080"
+      - "${EHRBASE_HOST_PORT:-8090}:8080"
 
 volumes:
   ehrdb_data:

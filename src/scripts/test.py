@@ -1,6 +1,8 @@
 import requests
 
-EHRBASE_URL = "http://localhost:8080/ehrbase/rest/openehr/v1"
+from service_config import EHRBASE_API_URL
+
+EHRBASE_URL = EHRBASE_API_URL
 
 aql_list = """
 SELECT

@@ -8,6 +8,10 @@ server.use(cors());
 //in memory store  (can use redis or db in prod)
 const ehr_mapping = {};
 
+server.get("/health", (req, res) => {
+  res.json({ status: "ok", mappedPatients: Object.keys(ehr_mapping).length });
+});
+
 server.get("/:patient_id", (req, res) => {
   const patient_id = req.params.patient_id;
   if (patient_id in ehr_mapping)

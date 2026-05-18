@@ -1,11 +1,11 @@
 ### get the status
-GET http://localhost:8080/ehrbase/rest/status
+GET http://localhost:8090/ehrbase/rest/status
 
 ### display the templates
-GET http://localhost:8080/ehrbase/rest/openehr/v1/definition/template/adl1.4/
+GET http://localhost:8090/ehrbase/rest/openehr/v1/definition/template/adl1.4/
 
 ### get EHR
-GET http://localhost:8080/ehrbase/rest/openehr/v1/ehr/{ehr_id}
+GET http://localhost:8090/ehrbase/rest/openehr/v1/ehr/{ehr_id}
 
 ### get composition
-GET http://localhost:8080/ehrbase/rest/openehr/v1/ehr/{ehr_id}/composition/{versioned_object_uid}
+GET http://localhost:8090/ehrbase/rest/openehr/v1/ehr/{ehr_id}/composition/{versioned_object_uid}
